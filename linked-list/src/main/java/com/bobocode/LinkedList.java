@@ -45,7 +45,6 @@ public class LinkedList<E> implements List<E> {
         }
 
         size++;
-//        throw new UnsupportedOperationException("This method is not implemented yet"); // todo: implement this method
     }
 
     /**

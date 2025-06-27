@@ -44,6 +44,49 @@ public class LinkedListTest {
     }
 
     @Test
+    @DisplayName("Test of adding elements into LinkedList")
+    public void testOfAddingElementsIntoLinkedList() {
+        List<Integer> list = new LinkedList<>();
+        list.add(5);
+
+        int expectedElement = 5;
+        int actualElement = list.get(0);
+        int expectedSize = 1;
+        int actualSize = list.size();
+
+        assertEquals(expectedElement, actualElement);
+        assertEquals(expectedSize, actualSize);
+
+        ////////////////////////////////////////////////
+
+        list.add(73);
+
+        expectedElement = 73;
+        actualElement = list.get(1);
+        expectedSize = 2;
+        actualSize = list.size();
+
+        assertEquals(expectedElement, actualElement);
+        assertEquals(expectedSize, actualSize);
+    }
+
+    @Test
+    @DisplayName("Test of adding elements into LinkedList with elements")
+    public void testOfAddingElementsIntoLinkedListWithElements() {
+        List<Integer> list = LinkedList.of(5, 73, 12);
+        list.add(41);
+        list.add(-3);
+
+        int expectedElement = -3;
+        int actualElement = list.get(4);
+        int expectedSize = 5;
+        int actualSize = list.size();
+
+        assertEquals(expectedElement, actualElement);
+        assertEquals(expectedSize, actualSize);
+    }
+
+    @Test
     @DisplayName("Test size of empty LinkedList")
     public void testSizeOfEmptyLinkedList() {
         List<Integer> list = new LinkedList<>();
