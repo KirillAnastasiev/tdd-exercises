@@ -43,8 +43,7 @@ public class LinkedList<E> implements List<E> {
             tailNode.next = newNode;
             tailNode = newNode;
         }
-
-        size++;
+        incrementSize();
     }
 
     /**
@@ -56,8 +55,18 @@ public class LinkedList<E> implements List<E> {
      */
     @Override
     public void add(int index, E element) {
-        size++;
-//        throw new UnsupportedOperationException("This method is not implemented yet"); // todo: implement this method
+        Objects.checkIndex(index, size + 1);
+
+        if (index == size) {
+            add(element);
+            return;
+        }
+
+        Node<E> newNode = new Node<>(element);
+        Node<E> currentNode = getNodeByIndex(index - 1);
+        newNode.next = currentNode.next;
+        currentNode.next = newNode;
+        incrementSize();
     }
 
     /**
@@ -81,12 +90,9 @@ public class LinkedList<E> implements List<E> {
      */
     @Override
     public E get(int index) {
-        Node<E> current = headNode;
+        Node<E> currentNode = getNodeByIndex(index);
 
-        for (int i = 1; i <= index ; i++) {
-            current = current.next;
-        }
-        return current.element;
+        return currentNode.element;
 //        throw new UnsupportedOperationException("This method is not implemented yet"); // todo: implement this method
     }
 
@@ -122,7 +128,7 @@ public class LinkedList<E> implements List<E> {
      */
     @Override
     public void remove(int index) {
-        size--;
+        decrementSize();
 //        throw new UnsupportedOperationException("This method is not implemented yet"); // todo: implement this method
     }
 
@@ -163,6 +169,23 @@ public class LinkedList<E> implements List<E> {
     @Override
     public void clear() {
         throw new UnsupportedOperationException("This method is not implemented yet"); // todo: implement this method
+    }
+
+    private Node<E> getNodeByIndex(int index) {
+        Node<E> currentNode = headNode;
+        for (int i = 1; i <= index ; i++) {
+            currentNode = currentNode.next;
+        }
+
+        return currentNode;
+    }
+
+    private void incrementSize() {
+        size++;
+    }
+
+    private void decrementSize() {
+        size--;
     }
 
     private static class Node<T> {

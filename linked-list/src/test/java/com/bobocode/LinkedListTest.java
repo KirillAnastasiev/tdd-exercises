@@ -87,6 +87,108 @@ public class LinkedListTest {
     }
 
     @Test
+    @DisplayName("Test of adding element into empty LinkedList by index")
+    public void testOfAddingElementIntoEmptyLinkedListByIndex() {
+        List<Integer> list = new LinkedList<>();
+        list.add(0, 5);
+
+        int expectedElement = 5;
+        int actualElement = list.get(0);
+        int expectedSize = 1;
+        int actualSize = list.size();
+
+        assertEquals(expectedElement, actualElement);
+        assertEquals(expectedSize, actualSize);
+    }
+
+    @Test
+    @DisplayName("Test of adding element to end LinkedList by index")
+    public void testOfAddingElementToEndOfLinkedListByIndex() {
+        List<Integer> list = LinkedList.of(5, 73, 12);
+        list.add(3, 41);
+
+        int expectedElement = 41;
+        int actualElement = list.get(3);
+        int expectedSize = 4;
+        int actualSize = list.size();
+
+        assertEquals(expectedElement, actualElement);
+        assertEquals(expectedSize, actualSize);
+    }
+
+    @Test
+    @DisplayName("Test of adding element to empty LinkedList by index and then adding element to end of LinkedList by index")
+    public void testOfAddingElementToEmptyLinkedListByIndexAndThenAddingElementToEndOfLinkedListByIndex() {
+        List<Integer> list = new LinkedList<>();
+        list.add(0, 5);
+
+        int expectedElement = 5;
+        int actualElement = list.get(0);
+        int expectedSize = 1;
+        int actualSize = list.size();
+
+        assertEquals(expectedElement, actualElement);
+        assertEquals(expectedSize, actualSize);
+
+        ////////////////////////////////////////////////
+
+        list.add(1, 73);
+
+        expectedElement = 73;
+        actualElement = list.get(1);
+        expectedSize = 2;
+        actualSize = list.size();
+
+        assertEquals(expectedElement, actualElement);
+        assertEquals(expectedSize, actualSize);
+    }
+
+    @Test
+    @DisplayName("Test of adding element into LinkedList by index")
+    public void testOfAddingElementIntoLinkedListByIndex() {
+        List<Integer> list = LinkedList.of(5, 73, 12);
+        list.add(1, 41);
+
+        int expectedElement = 41;
+        int actualElement = list.get(1);
+        int expectedSize = 4;
+        int actualSize = list.size();
+
+        assertEquals(expectedElement, actualElement);
+        assertEquals(expectedSize, actualSize);
+
+        ////////////////////////////////////////////////
+
+        expectedElement = 5;
+        actualElement = list.get(0);
+
+        assertEquals(expectedElement, actualElement);
+
+        ////////////////////////////////////////////////
+
+        expectedElement = 73;
+        actualElement = list.get(2);
+
+        assertEquals(expectedElement, actualElement);
+    }
+
+    @Test
+    @DisplayName("Test of adding element into LinkedList by index when index less then zero")
+    public void testOfAddingElementIntoLinkedListByIndexWhenIndexLessThenZero() {
+        List<Integer> list = new LinkedList<>();
+
+        assertThrows(IndexOutOfBoundsException.class, () -> list.add(-1, 5));
+    }
+
+    @Test
+    @DisplayName("Test of adding element into LinkedList by index bigger then LinkedList size")
+    public void testOfAddingElementIntoLinkedListByIndexBiggerThenLinkedListSize() {
+        List<Integer> list = LinkedList.of(5, 73, 12);
+
+        assertThrows(IndexOutOfBoundsException.class, () -> list.add(4, 41));
+    }
+
+    @Test
     @DisplayName("Test size of empty LinkedList")
     public void testSizeOfEmptyLinkedList() {
         List<Integer> list = new LinkedList<>();
