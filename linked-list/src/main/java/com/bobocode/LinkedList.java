@@ -1,5 +1,7 @@
 package com.bobocode;
 
+import java.util.stream.Stream;
+
 /**
  * {@link LinkedList} is a list implementation that is based on singly linked generic nodes. A node is implemented as
  * inner static class {@link Node<E>}.
@@ -7,6 +9,8 @@ package com.bobocode;
  * @param <E> generic type parameter
  */
 public class LinkedList<E> implements List<E> {
+
+    private int size;
 
     /**
      * This method creates a list of provided elements
@@ -16,7 +20,11 @@ public class LinkedList<E> implements List<E> {
      * @return a new list of elements the were passed as method parameters
      */
     public static <E> List<E> of(E... elements) {
-        throw new UnsupportedOperationException("This method is not implemented yet"); // todo: implement this method
+        LinkedList<E> result = new LinkedList<>();
+        Stream.of(elements).forEach(result::add);
+
+        return result;
+//        throw new UnsupportedOperationException("This method is not implemented yet"); // todo: implement this method
     }
 
     /**
@@ -26,7 +34,9 @@ public class LinkedList<E> implements List<E> {
      */
     @Override
     public void add(E element) {
-        throw new UnsupportedOperationException("This method is not implemented yet"); // todo: implement this method
+
+        size++;
+//        throw new UnsupportedOperationException("This method is not implemented yet"); // todo: implement this method
     }
 
     /**
@@ -38,7 +48,8 @@ public class LinkedList<E> implements List<E> {
      */
     @Override
     public void add(int index, E element) {
-        throw new UnsupportedOperationException("This method is not implemented yet"); // todo: implement this method
+        size++;
+//        throw new UnsupportedOperationException("This method is not implemented yet"); // todo: implement this method
     }
 
     /**
@@ -97,7 +108,8 @@ public class LinkedList<E> implements List<E> {
      */
     @Override
     public void remove(int index) {
-        throw new UnsupportedOperationException("This method is not implemented yet"); // todo: implement this method
+        size--;
+//        throw new UnsupportedOperationException("This method is not implemented yet"); // todo: implement this method
     }
 
 
@@ -128,7 +140,7 @@ public class LinkedList<E> implements List<E> {
      */
     @Override
     public int size() {
-        throw new UnsupportedOperationException("This method is not implemented yet"); // todo: implement this method
+        return size;
     }
 
     /**
