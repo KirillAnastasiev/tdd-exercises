@@ -122,4 +122,51 @@ public class StackTest {
         assertEquals(expectedSize, actualSize);
     }
 
+    @Test
+    @DisplayName("Test popping element from empty stack")
+    public void testPoppingElementFromEmptyStack() {
+        assertNull(stack.pop());
+    }
+
+    @Test
+    @DisplayName("Test popping element from stack")
+    public void testPoppingElementFromStack() {
+        stack.push(5);
+        stack.push(73);
+        stack.push(12);
+
+        stack.pop();
+        stack.pop();
+
+        int expectedElement = 5;
+        int actualElement = stack.pop();
+        int expectedSize = 0;
+        int actualSize = stack.size();
+
+        assertEquals(expectedElement, actualElement);
+        assertEquals(expectedSize, actualSize);
+    }
+
+    @Test
+    @DisplayName("Test popping elements after popping last element from stack")
+    public void testPoppingElementsAfterPoppingLastElementFromStack() {
+        stack.push(5);
+        stack.push(73);
+        stack.push(12);
+
+        stack.pop();
+        stack.pop();
+        stack.pop();
+
+        assertNull(stack.pop());
+        assertNull(stack.pop());
+
+        /////////////////////////////////////////////
+
+        int expectedSize = 0;
+        int actualSize = stack.size();
+
+        assertEquals(expectedSize, actualSize);
+    }
+
 }

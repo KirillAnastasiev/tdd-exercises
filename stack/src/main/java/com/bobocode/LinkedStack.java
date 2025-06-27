@@ -30,8 +30,7 @@ public class LinkedStack<T> implements Stack<T> {
             newNode.previous = tail;
             tail = newNode;
         }
-
-        size++;
+        incrementSize();
     }
 
     /**
@@ -41,12 +40,16 @@ public class LinkedStack<T> implements Stack<T> {
      */
     @Override
     public T pop() {
-        //TODO
+        if (Objects.isNull(head)) {
+            return null;
+        }
+
         Node<T> resultNode = tail;
         tail = resultNode.previous;
-
-        size--;
-
+        if (Objects.isNull(tail)) {
+            head = null;
+        }
+        decrementSize();
         return resultNode.value;
     }
 
@@ -68,6 +71,14 @@ public class LinkedStack<T> implements Stack<T> {
     @Override
     public boolean isEmpty() {
         return size == 0;
+    }
+
+    private void incrementSize() {
+        size++;
+    }
+
+    private void decrementSize() {
+        size--;
     }
 
     private static class Node<T> {
