@@ -37,9 +37,14 @@ public class LinkedStack<T> implements Stack<T> {
         return size;
     }
 
+    /**
+     * Checks if the stack is empty.
+     *
+     * @return {@code true} if the stack is empty, returns {@code false} if it's not
+     */
     @Override
     public boolean isEmpty() {
-        //TODO
-        throw new UnsupportedOperationException();    }
+        return size == 0;
+    }
 
 }

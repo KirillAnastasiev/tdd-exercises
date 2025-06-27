@@ -4,7 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class StackTest {
 
@@ -51,6 +51,42 @@ public class StackTest {
         int actual = stack.size();
 
         assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Test is empty stack without elements")
+    public void testIsEmptyStackWithoutElements() {
+        boolean actual = stack.isEmpty();
+
+        assertTrue(actual);
+    }
+
+    @Test
+    @DisplayName("Test is empty stack after adding elements")
+    public void testIsEmptyStackAfterAddingElements() {
+        stack.push(5);
+        stack.push(73);
+        stack.push(12);
+
+        boolean actual = stack.isEmpty();
+
+        assertFalse(actual);
+    }
+
+    @Test
+    @DisplayName("Test is empty stack after popping all elements")
+    public void testIsEmptyStackAfterPoppingAllElements() {
+        stack.push(5);
+        stack.push(73);
+        stack.push(12);
+
+        stack.pop();
+        stack.pop();
+        stack.pop();
+
+        boolean actual = stack.isEmpty();
+
+        assertTrue(actual);
     }
 
 }
