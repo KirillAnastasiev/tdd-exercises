@@ -89,4 +89,37 @@ public class StackTest {
         assertTrue(actual);
     }
 
+    @Test
+    @DisplayName("Test adding elements into stack")
+    public void testAddingElementsIntoStack() {
+        stack.push(5);
+        stack.push(73);
+        stack.push(12);
+
+        int expectedSize = 3;
+        int actualSize = stack.size();
+
+        assertEquals(expectedSize, actualSize);
+
+        /////////////////////////////////////////////
+
+        int expectedElement = 12;
+        int actualElement = stack.pop();
+        expectedSize = 2;
+        actualSize = stack.size();
+
+        assertEquals(expectedElement, actualElement);
+        assertEquals(expectedSize, actualSize);
+
+        /////////////////////////////////////////////
+
+        expectedElement = 73;
+        actualElement = stack.pop();
+        expectedSize = 1;
+        actualSize = stack.size();
+
+        assertEquals(expectedElement, actualElement);
+        assertEquals(expectedSize, actualSize);
+    }
+
 }
