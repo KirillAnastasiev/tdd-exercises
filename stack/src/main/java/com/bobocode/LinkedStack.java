@@ -12,7 +12,6 @@ import java.util.Objects;
 public class LinkedStack<T> implements Stack<T> {
 
     private int size;
-    private Node<T> head;
     private Node<T> tail;
 
     /**
@@ -24,12 +23,10 @@ public class LinkedStack<T> implements Stack<T> {
     public void push(T element) {
         Node<T> newNode = new Node<>(element);
 
-        if (Objects.isNull(head)) {
-            head = tail = newNode;
-        } else {
+        if (Objects.nonNull(tail)) {
             newNode.previous = tail;
-            tail = newNode;
         }
+        tail = newNode;
         incrementSize();
     }
 
@@ -40,15 +37,12 @@ public class LinkedStack<T> implements Stack<T> {
      */
     @Override
     public T pop() {
-        if (Objects.isNull(head)) {
+        if (Objects.isNull(tail)) {
             return null;
         }
 
         Node<T> resultNode = tail;
         tail = resultNode.previous;
-        if (Objects.isNull(tail)) {
-            head = null;
-        }
         decrementSize();
         return resultNode.value;
     }
