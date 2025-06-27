@@ -80,4 +80,20 @@ public class LinkedListTest {
         assertEquals(expected, actual);
     }
 
+    @Test
+    @DisplayName("Test is LinkedList without elements empty")
+    public void testIsLinkedListWithoutElementsEmpty() {
+        List<Integer> list = new LinkedList<>();
+
+        assertTrue(list.isEmpty());
+    }
+
+    @Test
+    @DisplayName("Test is LinkedList with elements empty")
+    public void testIsLinkedListWithElementsEmpty() {
+        List<Integer> list = LinkedList.of(5, 73, 12);
+
+        assertFalse(list.isEmpty());
+    }
+
 }
