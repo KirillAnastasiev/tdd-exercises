@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class LinkedListTest {
 
     @Test
-    @DisplayName("test 'of' method returns LinkedList class")
+    @DisplayName("Test 'of' method returns LinkedList class")
     public void testOfMethodReturnsLinkedListClass() {
         List<?> list = LinkedList.of();
 
@@ -16,6 +16,31 @@ public class LinkedListTest {
         Class<?> actual = list.getClass();
 
         assertSame(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Test 'of' method adds elements into LinkedList")
+    public void testOfMethodAddsElementsIntoLinkedList() {
+        List<Integer> list = LinkedList.of(5, 73, 12);
+
+        int expected = 5;
+        int actual = list.get(0);
+
+        assertEquals(expected, actual);
+
+        ////////////////////////////////////////////////
+
+        expected = 73;
+        actual = list.get(1);
+
+        assertEquals(expected, actual);
+
+        ////////////////////////////////////////////////
+
+        expected = 12;
+        actual = list.get(2);
+
+        assertEquals(expected, actual);
     }
 
     @Test

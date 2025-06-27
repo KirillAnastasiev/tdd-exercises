@@ -1,5 +1,6 @@
 package com.bobocode;
 
+import java.util.Objects;
 import java.util.stream.Stream;
 
 /**
@@ -11,6 +12,8 @@ import java.util.stream.Stream;
 public class LinkedList<E> implements List<E> {
 
     private int size;
+    private Node<E> headNode;
+    private Node<E> tailNode;
 
     /**
      * This method creates a list of provided elements
@@ -24,7 +27,6 @@ public class LinkedList<E> implements List<E> {
         Stream.of(elements).forEach(result::add);
 
         return result;
-//        throw new UnsupportedOperationException("This method is not implemented yet"); // todo: implement this method
     }
 
     /**
@@ -34,6 +36,13 @@ public class LinkedList<E> implements List<E> {
      */
     @Override
     public void add(E element) {
+        Node<E> newNode = new Node<>(element);
+        if (Objects.isNull(headNode)) {
+            headNode = tailNode = newNode;
+        } else {
+            tailNode.next = newNode;
+            tailNode = newNode;
+        }
 
         size++;
 //        throw new UnsupportedOperationException("This method is not implemented yet"); // todo: implement this method
@@ -73,7 +82,13 @@ public class LinkedList<E> implements List<E> {
      */
     @Override
     public E get(int index) {
-        throw new UnsupportedOperationException("This method is not implemented yet"); // todo: implement this method
+        Node<E> current = headNode;
+
+        for (int i = 1; i <= index ; i++) {
+            current = current.next;
+        }
+        return current.element;
+//        throw new UnsupportedOperationException("This method is not implemented yet"); // todo: implement this method
     }
 
     /**
@@ -150,4 +165,16 @@ public class LinkedList<E> implements List<E> {
     public void clear() {
         throw new UnsupportedOperationException("This method is not implemented yet"); // todo: implement this method
     }
+
+    private static class Node<T> {
+
+        T element;
+        Node<T> next;
+
+        public Node(T element) {
+            this.element = element;
+        }
+
+    }
+
 }
