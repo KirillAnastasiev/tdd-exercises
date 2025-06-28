@@ -3,6 +3,8 @@ package com.bobocode;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.NoSuchElementException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class LinkedListTest {
@@ -228,6 +230,25 @@ public class LinkedListTest {
         List<Integer> list = LinkedList.of(5, 73, 12);
 
         assertThrows(IndexOutOfBoundsException.class, () -> list.get(3));
+    }
+
+    @Test
+    @DisplayName("Test get first element from LinkedList with elements")
+    public void testGetFirstElementFromLinkedListWithElements() {
+        List<Integer> list = LinkedList.of(5, 73, 12);
+
+        int expected = 5;
+        int actual = list.getFirst();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Test get first element from empty LinkedList")
+    public void testGetFirstElementFromEmptyLinkedList() {
+        List<Integer> list = new LinkedList<>();
+
+        assertThrows(NoSuchElementException.class, () -> list.getFirst());
     }
 
     @Test

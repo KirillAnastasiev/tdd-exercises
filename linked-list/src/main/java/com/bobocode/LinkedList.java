@@ -1,5 +1,6 @@
 package com.bobocode;
 
+import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.stream.Stream;
 
@@ -103,7 +104,11 @@ public class LinkedList<E> implements List<E> {
      */
     @Override
     public E getFirst() {
-        throw new UnsupportedOperationException("This method is not implemented yet"); // todo: implement this method
+        if (isEmpty()) {
+            throw new NoSuchElementException("List is empty");
+        }
+
+        return headNode.element;
 
     }
 
