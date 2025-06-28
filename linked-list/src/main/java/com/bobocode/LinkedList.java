@@ -109,7 +109,6 @@ public class LinkedList<E> implements List<E> {
         }
 
         return headNode.element;
-
     }
 
     /**
@@ -120,7 +119,11 @@ public class LinkedList<E> implements List<E> {
      */
     @Override
     public E getLast() {
-        throw new UnsupportedOperationException("This method is not implemented yet"); // todo: implement this method
+        if (isEmpty()) {
+            throw new NoSuchElementException("List is empty");
+        }
+
+        return tailNode.element;
     }
 
     /**

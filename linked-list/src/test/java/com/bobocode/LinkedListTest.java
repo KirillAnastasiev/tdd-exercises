@@ -248,7 +248,26 @@ public class LinkedListTest {
     public void testGetFirstElementFromEmptyLinkedList() {
         List<Integer> list = new LinkedList<>();
 
-        assertThrows(NoSuchElementException.class, () -> list.getFirst());
+        assertThrows(NoSuchElementException.class, list::getFirst);
+    }
+
+    @Test
+    @DisplayName("Test get last element from LinkedList with elements")
+    public void testGetLastElementFromLinkedListWithElements() {
+        List<Integer> list = LinkedList.of(5, 73, 12);
+
+        int expected = 12;
+        int actual = list.getLast();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Test get last element from empty LinkedList")
+    public void testGetLastElementFromEmptyLinkedList() {
+        List<Integer> list = new LinkedList<>();
+
+        assertThrows(NoSuchElementException.class, list::getLast);
     }
 
     @Test
