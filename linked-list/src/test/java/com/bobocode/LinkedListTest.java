@@ -191,6 +191,69 @@ public class LinkedListTest {
     }
 
     @Test
+    @DisplayName("Test of setting elements to LinkedList with elements")
+    public void testOfSettingElementToLinkedListWithElements() {
+        List<Integer> list = LinkedList.of(5, 73, 12);
+        list.set(1, -3);
+
+        int expectedElement = -3;
+        int actualElement = list.get(1);
+        int expectedSize = 3;
+        int actualSize = list.size();
+
+        assertEquals(expectedElement, actualElement);
+        assertEquals(expectedSize, actualSize);
+    }
+
+    @Test
+    @DisplayName("Test of setting first element to LinkedList with elements")
+    public void testOfSettingFirstElementToLinkedListWithElements() {
+        List<Integer> list = LinkedList.of(5, 73, 12);
+        list.set(0, 41);
+
+        int expected = 41;
+        int actual = list.get(0);
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Test of setting element to LinkedList with elements")
+    public void testOfSettingLastElementToLinkedListWithElements() {
+        List<Integer> list = LinkedList.of(5, 73, 12);
+        list.set(2, 27);
+
+        int expected = 27;
+        int actual = list.get(2);
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Test of setting element to empty LinkedList")
+    public void testOfSettingElementToEmptyLinkedList() {
+        List<Integer> list = new LinkedList<>();
+
+        assertThrows(IndexOutOfBoundsException.class, () -> list.set(0, 41));
+    }
+
+    @Test
+    @DisplayName("Test of setting element to LinkedList by negative index")
+    public void testOfSettingElementToLinkedListByNegativeIndex() {
+        List<Integer> list = LinkedList.of(5, 73, 12);
+
+        assertThrows(IndexOutOfBoundsException.class, () -> list.set(-5, 41));
+    }
+
+    @Test
+    @DisplayName("Test of setting element to LinkedList by index bigger then index of last element")
+    public void testOfSettingElementToLinkedListByIndexBiggerThenIndexOfLastElement() {
+        List<Integer> list = LinkedList.of(5, 73, 12);
+
+        assertThrows(IndexOutOfBoundsException.class, () -> list.set(3, 41));
+    }
+
+    @Test
     @DisplayName("Test of getting element from LinkedList")
     public void testOfGettingElementFromLinkedList() {
         List<Integer> list = LinkedList.of(5, 73, 12);
