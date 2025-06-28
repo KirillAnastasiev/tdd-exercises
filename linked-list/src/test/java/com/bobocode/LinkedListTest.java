@@ -189,6 +189,48 @@ public class LinkedListTest {
     }
 
     @Test
+    @DisplayName("Test of getting element from LinkedList")
+    public void testOfGettingElementFromLinkedList() {
+        List<Integer> list = LinkedList.of(5, 73, 12);
+
+        int expected = 5;
+        int actual = list.get(0);
+
+        assertEquals(expected, actual);
+
+        ////////////////////////////////////////////////
+
+        expected = 12;
+        actual = list.get(2);
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Test of getting element from empty LinkedList by index zero")
+    public void testOfGettingElementFromEmptyLinkedListByIndexZero() {
+        List<Integer> list = new LinkedList<>();
+
+        assertThrows(IndexOutOfBoundsException.class, () -> list.get(0));
+    }
+
+    @Test
+    @DisplayName("Test of getting element from LinkedList by negative index")
+    public void testOfGettingElementFromLinkedListByNegativeIndex() {
+        List<Integer> list = LinkedList.of(5, 73, 12);
+
+        assertThrows(IndexOutOfBoundsException.class, () -> list.get(-5));
+    }
+
+    @Test
+    @DisplayName("Test of getting element from LinkedList by index bigger then index of last element")
+    public void testOfGettingElementFromLinkedListByIndexBiggerThenIndexOfLastElement() {
+        List<Integer> list = LinkedList.of(5, 73, 12);
+
+        assertThrows(IndexOutOfBoundsException.class, () -> list.get(3));
+    }
+
+    @Test
     @DisplayName("Test size of empty LinkedList")
     public void testSizeOfEmptyLinkedList() {
         List<Integer> list = new LinkedList<>();

@@ -25,7 +25,6 @@ public class LinkedList<E> implements List<E> {
     public static <E> List<E> of(E... elements) {
         LinkedList<E> result = new LinkedList<>();
         Stream.of(elements).forEach(result::add);
-
         return result;
     }
 
@@ -90,10 +89,10 @@ public class LinkedList<E> implements List<E> {
      */
     @Override
     public E get(int index) {
-        Node<E> currentNode = getNodeByIndex(index);
+        Objects.checkIndex(index, size);
 
+        Node<E> currentNode = getNodeByIndex(index);
         return currentNode.element;
-//        throw new UnsupportedOperationException("This method is not implemented yet"); // todo: implement this method
     }
 
     /**
@@ -176,7 +175,6 @@ public class LinkedList<E> implements List<E> {
         for (int i = 1; i <= index ; i++) {
             currentNode = currentNode.next;
         }
-
         return currentNode;
     }
 
