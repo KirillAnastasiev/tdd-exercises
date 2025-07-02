@@ -254,6 +254,82 @@ public class LinkedListTest {
     }
 
     @Test
+    @DisplayName("Test of removing element from LinkedList with elements")
+    public void testOfRemovingElementFromLinkedListWithElements() {
+        List<Integer> list = LinkedList.of(5, 73, 12);
+        list.remove(1);
+
+        int expectedElement = 5;
+        int actualElement = list.get(0);
+        int expectedSize = 2;
+        int actualSize = list.size();
+
+        assertEquals(expectedElement, actualElement);
+        assertEquals(expectedSize, actualSize);
+
+        ////////////////////////////////////////////////
+
+        expectedElement = 12;
+        actualElement = list.get(1);
+
+        assertEquals(expectedElement, actualElement);
+    }
+
+    @Test
+    @DisplayName("Test of removing first element from LinkedList")
+    public void testOfRemovingFirstElementFromLinkedList() {
+        List<Integer> list = LinkedList.of(5, 73, 12);
+        list.remove(0);
+
+        int expectedElement = 73;
+        int actualElement = list.get(0);
+        int expectedSize = 2;
+        int actualSize = list.size();
+
+        assertEquals(expectedElement, actualElement);
+        assertEquals(expectedSize, actualSize);
+    }
+
+    @Test
+    @DisplayName("Test of removing last element from LinkedList")
+    public void testOfRemovingLastElementFromLinkedList() {
+        List<Integer> list = LinkedList.of(5, 73, 12);
+        list.remove(2);
+
+        int expectedElement = 73;
+        int actualElement = list.get(1);
+        int expectedSize = 2;
+        int actualSize = list.size();
+
+        assertEquals(expectedElement, actualElement);
+        assertEquals(expectedSize, actualSize);
+    }
+
+    @Test
+    @DisplayName("Test of removing element from empty LinkedList")
+    public void testOfRemovingElementFromEmptyLinkedList() {
+        List<Integer> list = new LinkedList<>();
+
+        assertThrows(IndexOutOfBoundsException.class, () -> list.remove(0));
+    }
+
+    @Test
+    @DisplayName("Test of removing element from LinkedList by negative index")
+    public void testOfRemovingElementFromLinkedListByNegativeIndex() {
+        List<Integer> list = LinkedList.of(5, 73, 12);
+
+        assertThrows(IndexOutOfBoundsException.class, () -> list.remove(-1));
+    }
+
+    @Test
+    @DisplayName("Test of removing element from LinkedList by index bigger than index of last element")
+    public void testOfRemovingElementFromLinkedListByIndexBiggerThanIndexOfLastElement() {
+        List<Integer> list = LinkedList.of(5, 73, 12);
+
+        assertThrows(IndexOutOfBoundsException.class, () -> list.remove(3));
+    }
+
+    @Test
     @DisplayName("Test of getting element from LinkedList")
     public void testOfGettingElementFromLinkedList() {
         List<Integer> list = LinkedList.of(5, 73, 12);

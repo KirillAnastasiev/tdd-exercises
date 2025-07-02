@@ -143,8 +143,17 @@ public class LinkedList<E> implements List<E> {
      */
     @Override
     public void remove(int index) {
+        Objects.checkIndex(index, size);
+
+        if (index == 0) {
+            headNode = headNode.next;
+            decrementSize();
+            return;
+        }
+
+        Node<E> currentNode = getNodeByIndex(index - 1);
+        currentNode.next = currentNode.next.next;
         decrementSize();
-//        throw new UnsupportedOperationException("This method is not implemented yet"); // todo: implement this method
     }
 
 
