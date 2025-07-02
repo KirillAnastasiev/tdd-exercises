@@ -410,6 +410,30 @@ public class LinkedListTest {
     }
 
     @Test
+    @DisplayName("Test if LinkedList contains element")
+    public void testIfLinkedListContainsElement() {
+        List<Integer> list = LinkedList.of(5, 73, 12);
+
+        assertTrue(list.contains(73));
+
+        ////////////////////////////////////////////////
+
+        assertTrue(list.contains(12));
+
+        ////////////////////////////////////////////////
+
+        assertFalse(list.contains(-40));
+    }
+
+    @Test
+    @DisplayName("Test if empty LinkedList contains element")
+    public void testIfEmptyLinkedListContainsElement() {
+        List<Integer> list = new LinkedList<>();
+
+        assertFalse(list.contains(5));
+    }
+
+    @Test
     @DisplayName("Test size of empty LinkedList")
     public void testSizeOfEmptyLinkedList() {
         List<Integer> list = new LinkedList<>();
