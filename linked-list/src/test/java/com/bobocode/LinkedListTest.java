@@ -511,4 +511,21 @@ public class LinkedListTest {
         assertFalse(list.isEmpty());
     }
 
+    @Test
+    @DisplayName("Test of clearing LinkedList")
+    public void testOfClearingLinkedList() {
+        List<Integer> list = LinkedList.of(5, 73, 12);
+        list.clear();
+
+        assertTrue(list.isEmpty());
+
+        ////////////////////////////////////////////////
+
+        assertThrows(NoSuchElementException.class, list::getFirst);
+
+        ////////////////////////////////////////////////
+
+        assertThrows(NoSuchElementException.class, list::getLast);
+    }
+
 }

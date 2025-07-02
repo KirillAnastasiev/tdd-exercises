@@ -204,7 +204,8 @@ public class LinkedList<E> implements List<E> {
      */
     @Override
     public void clear() {
-        throw new UnsupportedOperationException("This method is not implemented yet"); // todo: implement this method
+        size = 0;
+        headNode = tailNode = null;
     }
 
     private Node<E> getNodeByIndex(int index) {
