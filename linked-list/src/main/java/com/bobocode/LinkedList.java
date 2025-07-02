@@ -36,14 +36,11 @@ public class LinkedList<E> implements List<E> {
      */
     @Override
     public void add(E element) {
-        Node<E> newNode = new Node<>(element);
         if (Objects.isNull(headNode)) {
-            headNode = tailNode = newNode;
+            add(0, element);
         } else {
-            tailNode.next = newNode;
-            tailNode = newNode;
+            add(size, element);
         }
-        incrementSize();
     }
 
     /**
@@ -57,15 +54,17 @@ public class LinkedList<E> implements List<E> {
     public void add(int index, E element) {
         Objects.checkIndex(index, size + 1);
 
-        if (index == size) {
-            add(element);
-            return;
-        }
-
         Node<E> newNode = new Node<>(element);
-        Node<E> currentNode = getNodeByIndex(index - 1);
-        newNode.next = currentNode.next;
-        currentNode.next = newNode;
+        if (Objects.isNull(headNode)) {
+            headNode = tailNode = newNode;
+        } else if (index == size) {
+            tailNode.next = newNode;
+            tailNode = newNode;
+        } else {
+            Node<E> currentNode = getNodeByIndex(index - 1);
+            newNode.next = currentNode.next;
+            currentNode.next = newNode;
+        }
         incrementSize();
     }
 
