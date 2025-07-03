@@ -44,8 +44,7 @@ public class RecursiveBinarySearchTree<E extends Comparable<E>> implements Binar
 
     @Override
     public void inOrderTraversal(Consumer<E> consumer) {
-        //TODO
-        throw new UnsupportedOperationException();
+        traversalRecursive(root, consumer);
     }
 
     private boolean addRecursive(Node<E> currentRoot, E element) {
@@ -113,8 +112,17 @@ public class RecursiveBinarySearchTree<E extends Comparable<E>> implements Binar
                         computeHeightRecursive(currentRoot.right)) + 1;
     }
 
-    private static class Node<T extends Comparable<T>> {
+    private void traversalRecursive(Node<E> currentRoot, Consumer<E> consumer) {
+        if (Objects.isNull(currentRoot)) {
+            return;
+        }
 
+        traversalRecursive(currentRoot.left, consumer);
+        consumer.accept(currentRoot.element);
+        traversalRecursive(currentRoot.right, consumer);
+    }
+
+    private static class Node<T extends Comparable<T>> {
 
         private T element;
         private Node<T> left;

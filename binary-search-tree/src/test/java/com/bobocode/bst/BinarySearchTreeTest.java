@@ -4,6 +4,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class BinarySearchTreeTest {
@@ -137,6 +140,25 @@ public class BinarySearchTreeTest {
 
         int expected = 5;
         int actual = binarySearchTree.height();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Test in order traversal of BinarySearchTree")
+    public void testInOrderTraversalOfBinarySearchTree() {
+        binarySearchTree.add(7);
+        binarySearchTree.add(14);
+        binarySearchTree.add(-3);
+        binarySearchTree.add(2);
+        binarySearchTree.add(100);
+        binarySearchTree.add(0);
+
+        List<Integer> list = new ArrayList<>();
+        binarySearchTree.inOrderTraversal(e -> list.add(e * 2));
+
+        List<Integer> expected = List.of(-6, 0, 4, 14, 28, 200);
+        List<Integer> actual = list;
 
         assertEquals(expected, actual);
     }
