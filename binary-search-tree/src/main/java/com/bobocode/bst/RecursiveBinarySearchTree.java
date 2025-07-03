@@ -21,8 +21,11 @@ public class RecursiveBinarySearchTree<E extends Comparable<E>> implements Binar
 
     @Override
     public boolean search(E element) {
-        //TODO
-        throw new UnsupportedOperationException();
+        if (Objects.isNull(root)) {
+            return false;
+        } else {
+            return searchRecursive(root, element);
+        }
     }
 
     @Override
@@ -76,6 +79,26 @@ public class RecursiveBinarySearchTree<E extends Comparable<E>> implements Binar
 
     private void incrementSize() {
         size++;
+    }
+
+    private boolean searchRecursive(Node<E> currentRoot, E element) {
+        if (currentRoot.element.compareTo(element) > 0) {
+            if (Objects.isNull(currentRoot.left)) {
+                return false;
+            } else {
+                return searchRecursive(currentRoot.left, element);
+            }
+        }
+
+        if (currentRoot.element.compareTo(element) < 0) {
+            if (Objects.isNull(currentRoot.right)) {
+                return false;
+            } else {
+                return searchRecursive(currentRoot.right, element);
+            }
+        }
+
+        return true;
     }
 
     private static class Node<T extends Comparable<T>> {

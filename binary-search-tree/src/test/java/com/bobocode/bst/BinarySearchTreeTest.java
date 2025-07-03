@@ -51,6 +51,47 @@ public class BinarySearchTreeTest {
     }
 
     @Test
+    @DisplayName("Test of searching element in empty BinarySearchTree")
+    public void testOfSearchingElementInEmptyBinarySearchTree() {
+        boolean actual = binarySearchTree.search(7);
+
+        assertFalse(actual);
+    }
+
+    @Test
+    @DisplayName("Test of searching elements in BinarySearchTree")
+    public void testOfSearchingElementsInBinarySearchTree() {
+        binarySearchTree.add(7);
+        binarySearchTree.add(14);
+        binarySearchTree.add(-3);
+        binarySearchTree.add(2);
+        binarySearchTree.add(100);
+        binarySearchTree.add(0);
+
+        boolean actual = binarySearchTree.search(14);
+
+        assertTrue(actual);
+
+        ////////////////////////////////////////////////
+
+        actual = binarySearchTree.search(2);
+
+        assertTrue(actual);
+
+        ////////////////////////////////////////////////
+
+        actual = binarySearchTree.search(7);
+
+        assertTrue(actual);
+
+        ////////////////////////////////////////////////
+
+        actual = binarySearchTree.search(-7);
+
+        assertFalse(actual);
+    }
+
+    @Test
     @DisplayName("Test size of empty BinarySearchTree")
     public void testSizeOfEmptyBinarySearchTree() {
         int expected = 0;
