@@ -1,17 +1,22 @@
 package com.bobocode.bst;
 
+import java.util.Objects;
 import java.util.function.Consumer;
 
 public class RecursiveBinarySearchTree<E extends Comparable<E>> implements BinarySearchTree<E> {
 
     private int size;
+    private Node<E> root;
 
     @Override
     public boolean add(E element) {
-        //TODO
-        incrementSize();
-        return true;
-//        throw new UnsupportedOperationException();
+        if (Objects.isNull(root)) {
+            root = new Node<>(element);
+            incrementSize();
+            return true;
+        } else {
+            return addRecursive(root, element);
+        }
     }
 
     @Override
@@ -37,8 +42,52 @@ public class RecursiveBinarySearchTree<E extends Comparable<E>> implements Binar
         throw new UnsupportedOperationException();
     }
 
+    private boolean addRecursive(Node<E> currentRoot, E element) {
+        if (currentRoot.element.compareTo(element) > 0) {
+            if (Objects.isNull(currentRoot.left)) {
+                return addLeft(currentRoot, element);
+            } else {
+                return addRecursive(currentRoot.left, element);
+            }
+        }
+
+        if (currentRoot.element.compareTo(element) < 0) {
+            if (Objects.isNull(currentRoot.right)) {
+                return addRight(currentRoot, element);
+            } else {
+                return addRecursive(currentRoot.right, element);
+            }
+        }
+
+        return false;
+    }
+
+    private boolean addRight(Node<E> currentRoot, E element) {
+        currentRoot.right = new Node<>(element);
+        incrementSize();
+        return true;
+    }
+
+    private boolean addLeft(Node<E> currentRoot, E element) {
+        currentRoot.left = new Node<>(element);
+        incrementSize();
+        return true;
+    }
+
     private void incrementSize() {
         size++;
+    }
+
+    private static class Node<T extends Comparable<T>> {
+
+        private T element;
+        private Node<T> left;
+        private Node<T> right;
+
+        public Node(T element) {
+            this.element = element;
+        }
+
     }
 
 }
