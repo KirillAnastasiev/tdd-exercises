@@ -35,11 +35,7 @@ public class RecursiveBinarySearchTree<E extends Comparable<E>> implements Binar
 
     @Override
     public int height() {
-        if (Objects.isNull(root)) {
-            return 0;
-        } else {
-            return computeHeightRecursive(root);
-        }
+        return computeHeightRecursive(root);
     }
 
     @Override
