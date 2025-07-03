@@ -113,4 +113,32 @@ public class BinarySearchTreeTest {
         assertEquals(expected, actual);
     }
 
+    @Test
+    @DisplayName("Test height of empty BinarySearchTree")
+    public void testHeightOfEmptyBinarySearchTree() {
+        int expected = 0;
+        int actual = binarySearchTree.height();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Test height of BinarySearchTree")
+    public void testHeightOfBinarySearchTree() {
+        binarySearchTree.add(7);
+        binarySearchTree.add(14);
+        binarySearchTree.add(-3);
+        binarySearchTree.add(2);
+        binarySearchTree.add(100);
+        binarySearchTree.add(55);
+        binarySearchTree.add(0);
+        binarySearchTree.add(-5);
+        binarySearchTree.add(-1);
+
+        int expected = 5;
+        int actual = binarySearchTree.height();
+
+        assertEquals(expected, actual);
+    }
+
 }

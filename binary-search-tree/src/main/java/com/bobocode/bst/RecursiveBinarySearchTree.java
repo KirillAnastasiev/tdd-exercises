@@ -35,8 +35,11 @@ public class RecursiveBinarySearchTree<E extends Comparable<E>> implements Binar
 
     @Override
     public int height() {
-        //TODO
-        throw new UnsupportedOperationException();
+        if (Objects.isNull(root)) {
+            return 0;
+        } else {
+            return computeHeightRecursive(root);
+        }
     }
 
     @Override
@@ -101,7 +104,17 @@ public class RecursiveBinarySearchTree<E extends Comparable<E>> implements Binar
         return true;
     }
 
+    private int computeHeightRecursive(Node<E> currentRoot) {
+        if (Objects.isNull(currentRoot)) {
+            return 0;
+        }
+
+        return Math.max(computeHeightRecursive(currentRoot.left),
+                        computeHeightRecursive(currentRoot.right)) + 1;
+    }
+
     private static class Node<T extends Comparable<T>> {
+
 
         private T element;
         private Node<T> left;
